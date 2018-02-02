@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+</head>
+<link rel="stylesheet" type="text/css" href="../../Content/css/style.css">
+<body>
+    <div id="app">
+        <form  @submit.prevent="submit" method="get" accept-charset="utf-8">
+            <h2>注册页面</h2>
+            <div>
+              <span>用户名：</span>
+              <input type="text" placeholder="请输入用户名" v-model="username"/>
+            </div>
+            <div>
+              <span>密码：</span>
+              <input type="text" placeholder="请输入密码"  v-model="password"/>
+            </div>
+            <div>
+                <button type="submit">提交</button>
+                <!-- <input type="" value=""> -->
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="../../Content/js/vue.js"></script>
+    <script type="text/javascript">
+        var app = new Vue({
+             el: '#app',
+             data: {
+               username:null,
+               password:null
+             },
+             methods:{
+                submit(){
+                    if(sessionStorage.getItem("username")==this.username){
+                        if(sessionStorage.getItem("password")==this.password){
+                            location.href="./home.html";
+                        }else{
+                            alert("密码与用户名不符")
+                        }
+                    }else{
+                        alert("用户不存在")
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

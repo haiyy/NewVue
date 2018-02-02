@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="Content/css/style.css">
+</head>
+<body>
+    <div id="app">
+        <form  @submit.prevent="submit" method="get" accept-charset="utf-8">
+            <h2>注册页面</h2>
+            <div>
+              <span>用户名：</span>
+              <input type="text" placeholder="请输入用户名" v-model="username"/>
+            </div>
+            <div>
+              <span>密码：</span>
+              <input type="text" placeholder="请输入密码"  v-model="password"/>
+            </div>
+            <div>
+              <span>确认密码：</span>
+              <input type="text" placeholder="请确认密码"  v-model="passwordgen"/>
+            </div>
+            <div>
+                <button type="submit">提交</button>
+                <!-- <input type="" value=""> -->
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="./Content/js/vue.js"></script>
+    <script type="text/javascript">
+        var app = new Vue({
+             el: '#app',
+             data: {
+               username:null,
+               password:null,
+               passwordgen:null
+             },
+             methods:{
+                /*getcilck(){
+                    console.log(1)
+                }*/
+                submit(){
+                    let useReg = /^[a-zA-Z0-9_-]{0,16}$/;
+                    ///[\u4E00-\u9FA5]/
+                    let passReg = /^[a-zA-Z0-9]{6,12}$/;
+                    if(this.username!=null){
+                        if(useReg.test(this.username)){
+                            if(passReg.test(this.password)){
+                                if(this.passwordgen==this.password){
+                                    sessionStorage.setItem("username", this.username);
+                                    sessionStorage.setItem("password", this.password);
+                                    location.href="./App/Views/register.html";
+                                }else{
+                                    alert("两次密码不符")
+                                }
+                            }else{
+                                alert("密码格式错误")
+                            }
+                        }else{
+                            alert("用户名格式不正确")
+                        }
+                    }else{
+                        alert("用户名不能为空");
+                    }
+
+                    //console.log(this.username);
+                }
+             }
+        })
+        //action="file:///C:/Users/Administrator/Desktop/hellwordvue/App/Views/home.html"
+    </script>
+</body>
+</html>
